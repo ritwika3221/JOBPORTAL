@@ -1,0 +1,32 @@
+{% load static %}
+
+{% block body %}
+
+{% include "navigation.html" %}
+<marquee behavior="" direction=""style="font-size:25px;color:grey;background-color:black; font-weight:bold; margin-top:1px">
+User Login
+</marquee>
+
+{% if messages %}
+{% for mes in messages %}
+<p {% if mes.tags %} class="alert alert-{{mes.tags}}" {% endif %}>{{mes}}</p>
+{% endfor %}
+{% endif %}
+
+<form class="container mt-5" method="POST" >
+    {% csrf_token %}
+    {% for fm in form %}
+        <div class="form-class">
+            {{fm.label_tag}} {{fm}} <small class="text-warning">{{fm.errors|striptags}}</small>
+        </div>
+    {% endfor %}
+    <input type="submit" value="Login" class="btn btn-primary mt-3" style="font-weight:bold">
+    <a href="{% url 'user_signup' %}" class="btn btn-primary mt-3" style="font-weight:bold">Sign Up</a>
+
+    {% if form.non_field_errors %}
+    {% for error  in form.non_field_errors %}
+    <p class="alert alert-danger my-3 ">{{error}}</p>
+    {% endfor %}
+    {% endif %}
+</form>
+{% endblock body %}

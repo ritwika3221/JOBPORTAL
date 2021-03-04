@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {% load static %}
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JOB PORTAL</title>
+    <link rel="stylesheet" href="{% static 'css/all.min.css' %}">
+    <link rel="stylesheet" href="{% static 'css/bootstrap.css' %}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <style>
+    .nav-link{
+        color:white;
+        margin-right:4px;
+    }
+    .nav-link:hover{
+        color:yellow ;
+        font-weight:bold;
+        background-color:red;
+        border-radius:10px;
+    }
+    .navbar-brand:hover{
+        color:yellow !important;
+        background-color:red;
+        width:130px;
+    }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-2 mt-5">
+                <img src="{% static 'img/4.png' %}" style="width:75px " alt="logo">
+            </div>
+            <div class="col-sm-6 mt-5 text-center">
+                <span style="font-weight: bold ; font-size: 30px">
+                    <span style=" color:maroon ">ONLINE JOB</span>
+                    <span style=" color:maroon ">PORTAL</span>
+                </span>
+            </div>
+            <div class="col-sm-4 mt-5" style="padding-left:10%">
+                <span style="font-weight: bold ;font-size:30px ">
+                    <span style="padding:2px"><i class="fa fa-twitter"></i></span>
+                    <span style="padding:3px"><i class="fa fa-linkedin "></i></span>
+                    <span style="padding:3px"><i class="fa fa-instagram "></i></span>
+                    <span style="padding:3px"><i class="fa fa-facebook "></i></span>
+                    <span style="padding:3px"><i class="fa fa-telegram "></i></span>
+                </span>
+            </div>
+        </div>
+    </div>
+    <nav class="navbar navbar-expand-sm mt-2" style="background-color:darkblue">
+    <a href="#" class="navbar-brand text-white font-weight-bold " style="padding-left:10px; font-family:Monotype Corsiva; font-size:30px">Job portal</a>
+    <ul class="navbar-nav">
+        <li class="nav-item">
+            <a href="{% url 'index' %}" class="nav-link" style="margin-left:200px"><i class="fa fa-home" style="margin-right:2px"></i>Home</a>
+        </li>    
+        {% if request.user.is_authenticated %} 
+        <li class="nav-item">
+            <a href="{% url 'Rdashboard' %}" class="nav-link"><i class="fa fa-user"style="margin-right:2px"></i>Profile</a>
+        </li>
+        <li class="nav-item">
+            <a href="{% url 'reqruiter_logout' %}" class="nav-link"> <i class="fa fa-sign-in"style="margin-right:2px"></i> Logout</a>
+        </li>
+        <li class="nav-item">
+            <a href="{% url 'change_password2' %}" class="nav-link"> <i class="fa fa-sign-in"style="margin-right:2px"></i> Change Password</a>
+        </li>
+        <li class="nav-item">
+            <a href="{% url 'job_list' %}" class="nav-link"> <i class="fa fa-list-ol"style="margin-right:2px"></i> Job List</a>
+        </li>
+        <li class="nav-item">
+            <a href="{% url 'add_job' %}" class="nav-link"> <i class="fa fa-plus-circle"style="margin-right:2px"></i> Add Job</a>
+        </li>
+        <li class="nav-item">
+            <a href="{% url 'candidate_apply' %}" class="nav-link"> <i class="fa fa-list-ul"style="margin-right:2px"></i> Candidate Applied</a>
+        </li>
+        {% else %}
+        <li class="nav-item">
+            <a href="{% url 'user_login' %}" class="nav-link"><i class="fa fa-user-plus" style="margin-right:2px"></i>User Login</a>
+        </li>
+        
+        <li class="nav-item">
+            <a href="{% url 'reqruiter_login' %}" class="nav-link"><i class="fa fa-sign-language"style="margin-right:2px"></i>Reqruiter Login</a>
+        </li>
+        {% endif %}
+        <a href="#" class="navbar-brand text-white font-weight-bold " style="padding-left:6px; font-family:Monotype Corsiva; font-size:18px">{{request.user.reqruiteruser.first_name}} {{request.user.reqruiteruser.last_name}}</a>
+    </ul>
+
+    </nav>
+    <script src="{% static 'core/js/all.min.js' %}"></script>
+    <script src="{% static 'js/jquery.js' %}"></script>
+    <script src="{% static 'js/proper.js' %}"></script>
+    <script src="{% static 'js/bootstrap.js' %}"></script>
+    
+</body>
+</html>

@@ -1,0 +1,57 @@
+{% load static %}
+
+{% block body %}
+
+{% include "navigation.html" %}
+<marquee style="font-size:25px;color:grey;background-color:black; font-weight:bold; margin-top:1px">
+    Contact
+</marquee>
+<script>
+    function submitform(){
+        alert('Form Submitted');
+        window.location=('{% url "index" %}');
+    }
+
+</script>
+
+{% if messages %}
+
+{% for mes in messages %}
+<p {% if mes.tags %} class="alert alert-{{mes.tags}}" {% endif %}>{{mes}}</p>
+{% endfor %}
+{% endif %}
+
+<form method="post" class="container mt-5" enctype="multipart/form-data">
+{% csrf_token %}
+{% for fm in formnew %}
+    <div class="form-class">
+        {{fm.label_tag}} {{fm}} <small class="text-warning">{{fm.errors|striptags}}</small>
+    </div>
+{% endfor %}
+{% for fm in form %}
+    <div class="form-group">
+        {{fm.label_tag}} {{fm}} {{fm.errors|striptags}}
+    </div>
+{% endfor %}
+
+<input type="submit" value="Submit" class="btn btn-success" style="margin-top:6px; " onclick="submitform()">
+<div class="row">
+        <div class="col-md-6 kk w3-row-padding w3-center w3-padding-24"><i class="fa fa-mobile fa-3x" aria-hidden="true" id="hhs"></i> Phone No :  7987643221</div>
+        <div class="col-md-6 kk w3-row-padding w3-center w3-padding-24"><i class="fas fa-envelope fa-3x"></i> email : ritwi3221@gmail.com</div>
+        
+</div>
+{% if formnew.non_field_errors %}
+{% for error  in formnew.non_field_errors %}
+<p class="alert alert-danger my-3 ">{{error}}</p>
+{% endfor %}
+{% else %}
+{% endif %}
+{% if form.non_field_errors %}
+{% for error  in form.non_field_errors %}
+<p class="alert alert-danger my-3 ">{{error}}</p>
+{% endfor %}
+{% else %}
+{% endif %}
+</form>
+
+{% endblock body %}

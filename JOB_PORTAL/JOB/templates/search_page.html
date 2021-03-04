@@ -1,0 +1,27 @@
+{% load static %}
+
+{% block body %}
+
+{% include "navigation.html" %}
+
+<div class="container-fluid mt-5" >
+<div class="row"> 
+  {% for fm in obj %} 
+  <div class="col-sm-4 ">
+  </div>
+  <div class="col-sm-4 ">
+    <div class="card card-body text-center text-white" style="width: 100% ; background:black; margin-top:5px">
+        <p><span><b>Title:-</b><b > {{fm.title|upper}}</b></span></p>
+        <p><span><b>Salary:-</b><b >{{fm.salary}}</b></span></p>
+        <p><span><b>Reqruiter:-</b><b >{{fm.reqruiteruser.first_name|upper}} {{fm.reqruiteruser.last_name|upper}}</b></span></p>
+        <p><span><b>Location:-</b><b>{{fm.location|upper}}</b></span></p>
+        <p><span><b>Skills:-</b><b >{{fm.skills|upper}}</b></span></p>
+        <a href="{% url 'apply' fm.id %}" class="btn btn-primary formButtonfront">Apply</a>
+    </div>
+  </div>
+    <div class="col-sm-4 ">
+    </div>
+  {% endfor %}
+</div>
+</div>
+{% endblock body %}

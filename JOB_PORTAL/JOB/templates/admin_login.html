@@ -1,0 +1,19 @@
+{% load static %}
+
+{% block body %}
+
+{% include "navigation.html" %}
+<marquee behavior="" direction=""style="font-size:25px;color:grey;background-color:black; font-weight:bold; margin-top:1px">
+Admin Login
+</marquee>
+<form class="container mt-5" method="POST">
+    {% csrf_token %}
+    <label><b> User Name</b></label>
+    <input type="text" class="form-control" name="uname" placeholder="Enter Your Name" >
+    
+    <label><b> Password</b></label>
+    <input type="password" class="form-control" name="pwd" placeholder="Enter Your Password">
+
+    <input type="submit" value="Login" class="btn btn-primary mt-3" style="font-weight:bold">
+</form>
+{% endblock body %}

@@ -1,0 +1,77 @@
+{% load static %}
+
+{% block body %}
+
+{% include "navigation.html" %}
+{% if messages %}
+{% for mes in messages %}
+<p {% if mes.tags %} class="alert alert-{{mes.tags}}" {% endif %}>{{mes}}</p>
+{% endfor %}
+{% endif %}
+<style>
+.container{
+    max-width:90%;
+}
+.content{
+    text-align:center;
+    position:absolute;
+    background:rgba(0,0,60,0.5);
+    height:25px;
+    color:white;
+    margin-left:150px;
+}
+</style>
+<div style="background:black">
+<form class="form-inline" method="POST" action="{% url 'searchk' %}">
+      {% csrf_token %}
+      <input class="form-control mr-sm-2" type="search" placeholder="Search District" aria-label="Search" name="search" />
+      <button class="btn btn-outline-success my-2 my-sm-0" type="submit">
+        Search
+      </button>
+    </form>
+
+<div class="container-fluid" style="margin-top:1%">
+    <img src="{% static 'img/1.jpg' %}" alt="background" style="height:450px; width:100%">
+</div>
+<div class="container" style="background-color:black; height:1000px; margin-top:2%;">
+    <h1 class="text-center text-white">----|OUR PLACED STUDENTS|----</h1>
+    <div class="row mt-3">
+        <div class="col-md-4">
+            <img src="{% static 'img/11.jpg' %}" alt="p_1" style="width:100%; margin-top:5%;border-radius:50%;height:350px">
+                <div class="content" >
+                    <p>FaceBook</p>
+                </div>
+        </div>
+        <div class="col-md-4">
+            <img src="{% static 'img/22.jpg' %}" alt="p_1" style="width:100%; margin-top:5%;border-radius:50%;height:350px">
+                <div class="content" >
+                    <p>Whatsapp</p>
+                </div>
+        </div>
+        <div class="col-md-4">
+            <img src="{% static 'img/33.jpg' %}" alt="p_1" style="width:100%; margin-top:5%;border-radius:50%;height:350px">
+                <div class="content" >
+                    <p>Amazon</p>
+                </div>
+        </div>
+        
+    </div>
+    <div class="row mt-3">
+        <div class="col-md-4">
+            <img src="{% static 'img/44.jpg' %}" alt="p_1" style="width:100%; margin-top:5%;border-radius:50%;height:350px">
+                <div class="content" >
+                    <p>Flipkart</p>
+                </div>
+        </div>
+        <div class="col-md-4">
+            <img src="{% static 'img/55.png' %}" alt="p_1" style="width:100%; margin-top:5%;border-radius:50%;height:350px">
+                <div class="content" >
+                    <p>Infosys</p>
+                </div>
+        </div>
+    </div>
+
+</div>
+</div>
+{% include 'footer.html' %}
+{% endblock body %}

@@ -1,0 +1,40 @@
+{% load static %}
+
+{% block body %}
+
+{% include "navigation.html" %}
+<marquee behavior="" direction=""style="font-size:25px;color:grey;background-color:black; font-weight:bold; margin-top:1px">
+Student Dashboard
+</marquee>
+<style>
+img{
+    margin-top:2%;
+    border-radius:50%;
+    border:5px solid darkgrey;
+}
+</style>
+<div class="container-fluid" style="background-color:lightblue; height:1000px; margin-top:1%;">
+    <h1 class="text-center ">Profile</h1>
+    <div class="row mt-12">
+        <div class="col-md-4">
+
+        </div>
+        <div class="col-md-4 container-fluid" style="background-color:black;">
+            <center><img src="{{request.user.studentuser.image.url}}" alt="profile" width="200px" height="200px" ></center>
+            {% comment %} <h5><p class="text-center text-white ">{{request.user.username}}</p> </h5><br> {% endcomment %}
+            <br>
+            <p><h5 class="text-center text-white ">NAME-{{request.user.studentuser.first_name|upper}} {{request.user.studentuser.last_name|upper}}</h5></p><br>
+            <p><h5 class="text-center text-white ">PHONE-{{request.user.studentuser.mobile}} </h5></p><br>
+            <p><h5 class="text-center text-white ">GENDER-{{request.user.studentuser.gender|upper}}</h5></p><br>
+            <p><h5 class="text-center text-white ">EMAIL-{{request.user.studentuser.email}}</h5></p><br>
+            <center><a href="{% url 'edit_studentprofile' request.user.studentuser.id %}" class="btn btn-success btn-sm mb-3" >Update</a></center>
+        </div>
+        <div class="col-md-4">
+
+        </div>
+    </div>
+
+
+
+</div>
+{% endblock body %}

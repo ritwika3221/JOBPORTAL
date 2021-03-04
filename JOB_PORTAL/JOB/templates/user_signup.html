@@ -1,0 +1,45 @@
+{% load static %}
+
+{% block body %}
+
+{% include "navigation.html" %}
+<marquee style="font-size:25px;color:grey;background-color:black; font-weight:bold; margin-top:1px">
+    User SignUp
+</marquee>
+{% if messages %}
+
+{% for mes in messages %}
+<p {% if mes.tags %} class="alert alert-{{mes.tags}}" {% endif %}>{{mes}}</p>
+{% endfor %}
+{% endif %}
+
+<form method="post" class="container mt-5" enctype="multipart/form-data">
+{% csrf_token %}
+{% for fm in formnew %}
+    <div class="form-class">
+        {{fm.label_tag}} {{fm}} <small class="text-warning">{{fm.errors|striptags}}</small>
+    </div>
+{% endfor %}
+{% for fm in form %}
+    <div class="form-group">
+        {{fm.label_tag}} {{fm}} {{fm.errors|striptags}}
+    </div>
+{% endfor %}
+
+<input type="submit" value="Submit" class="btn btn-success" style="margin-top:6px; ">
+
+{% if formnew.non_field_errors %}
+{% for error  in formnew.non_field_errors %}
+<p class="alert alert-danger my-3 ">{{error}}</p>
+{% endfor %}
+{% else %}
+{% endif %}
+{% if form.non_field_errors %}
+{% for error  in form.non_field_errors %}
+<p class="alert alert-danger my-3 ">{{error}}</p>
+{% endfor %}
+{% else %}
+{% endif %}
+</form>
+
+{% endblock body %}
